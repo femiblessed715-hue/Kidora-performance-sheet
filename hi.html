@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kidora Preschool - Performance Sheet</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eee;
+    color: #333;
+    padding: 20px;
+}
+
+.sheet {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    background: linear-gradient(135deg, #56319a, #4b278c);
+    color: white;
+    padding: 25px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo {
+    font-size: 55px;
+    font-weight: 900;
+    letter-spacing: -4px;
+    color: white;
+    text-shadow: 3px 3px 0 #333;
+}
+
+.logo span:nth-child(1) { color: #168bd1; }
+.logo span:nth-child(2) { color: #79a92f; }
+.logo span:nth-child(3) { color: #ef8d16; }
+.logo span:nth-child(4) { color: #e8398b; }
+.logo span:nth-child(5) { color: #23a4a4; }
+
+.subtitle {
+    background: #6b379e;
+    display: inline-block;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.tagline {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.header-info {
+    text-align: left;
+}
+
+.header-info h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.header-info h2 {
+    color: #ffd900;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.age {
+    display: inline-block;
+    background: #ffd900;
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ================= STUDENT INFO ================= */
+
+.section {
+    margin: 20px;
+}
+
+.section-title {
+    display: inline-block;
+    background: #176fae;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px 20px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.student-info {
+    border: 2px solid #a9cbdc;
+    border-radius: 0 12px 12px 12px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 40px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 35px;
+}
+
+.info-label {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.line {
+    border-bottom: 1px solid #777;
+    flex: 1;
+    min-width: 50px;
+}
+
+/* ================= PERFORMANCE SCALE ================= */
+
+.scale {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.scale-item {
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ddd;
+}
+
+.face {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+.green .face { background: #62b342; }
+.blue .face { background: #176fb3; }
+.yellow .face { background: #f0b900; }
+.orange .face { background: #ef7600; }
+
+.scale-item strong {
+    display: block;
+    font-size: 12px;
+}
+
+.scale-item small {
+    font-size: 10px;
+}
+
+/* ================= ASSESSMENTS ================= */
+
+.assessments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.assessment {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.assessment-title {
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.purple { background: #7140a4; }
+.green-bg { background: #61ad3d; }
+.blue-bg { background: #087db9; }
+.orange-bg { background: #f28b00; }
+.pink-bg { background: #d82d7c; }
+.teal-bg { background: #1caaa5; }
+
+.rating-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.rating-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid white;
+    display: block;
+}
+
+.assessment-body {
+    padding: 8px 12px;
+}
+
+.assessment-row {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 22px);
+    align-items: center;
+    min-height: 29px;
+    font-size: 11px;
+    border-bottom: 1px dotted #ddd;
+}
+
+.assessment-row:last-child {
+    border-bottom: none;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    margin: auto;
+}
+
+/* ================= OBSERVATION ================= */
+
+.observation {
+    margin-top: 20px;
+    border: 1px solid #e0c75a;
+    border-radius: 12px;
+    background: #fffbdc;
+    padding: 15px;
+}
+
+.observation h3 {
+    color: #8c4c91;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.observation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.observation-box h4 {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.lines {
+    height: 70px;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 21px,
+        #bbb 22px
+    );
+}
+
+/* ================= SIGNATURES ================= */
+
+.signatures {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 25px 20px 15px;
+}
+
+.signature {
+    text-align: center;
+}
+
+.signature-line {
+    border-bottom: 1px solid #555;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.signature small {
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #542a91;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 5px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 25px 15px;
+    }
+
+    .logo {
+        font-size: 42px;
+    }
+
+    .header-info h1 {
+        font-size: 18px;
+    }
+
+    .header-info h2 {
+        font-size: 20px;
+    }
+
+    .student-info {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .scale {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .assessments {
+        grid-template-columns: 1fr;
+    }
+
+    .signatures {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .section {
+        margin: 10px;
+    }
+
+    .scale {
+        grid-template-columns: 1fr;
+    }
+
+    .student-info {
+        padding: 12px;
+    }
+
+    .info-row {
+        font-size: 11px;
+    }
+
+    .assessment-row {
+        font-size: 10px;
+        grid-template-columns: 1fr repeat(4, 18px);
+    }
+
+    .signatures {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sheet">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div>
+            <div class="logo">
+                <span>K</span><span>I</span><span>D</span><span>O</span><span>R</span><span>A</span>
+            </div>
+
+            <div class="subtitle">PRESCHOOL</div>
+
+            <div class="tagline">
+                Where Little Minds<br>
+                Play, Learn & Grow
+            </div>
+        </div>
+
+        <div class="header-info">
+            <h1>PERIODIC ASSESSMENT – I</h1>
+            <h2>PERFORMANCE SHEET</h2>
+            <span class="age">PLAYGROUP (2 – 3 YEARS)</span>
+        </div>
+
+    </header>
+
+
+    <!-- STUDENT INFORMATION -->
+
+    <section class="section">
+
+        <div class="section-title">
+            👤 STUDENT INFORMATION
+        </div>
+
+        <div class="student-info">
+
+            <div class="info-row">
+                <span>👤</span>
+                <span class="info-label">Student Name</span>
+                <span>:</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="info-row">
+                <span>🎓</span>
+                <span class="info-label">Class</span>
+                <span>:</span>
+                <span class="line">Playgroup</span>
+            </div>
+
+            <div class="info-row">
+                <span>🪪</span>
+                <span class="info-label">Admission No.</span>
+                <span>:</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="info-row">
+                <span>📅</span>
+                <span class="info-label">Assessment</span>
+                <span>:</span>
+                <span class="line">Periodic Assessment – I</span>
+            </div>
+
+            <div class="info-row">
+                <span>🎂</span>
+                <span class="info-label">Date of Birth</span>
+                <span>:</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="info-row">
+                <span>📅</span>
+                <span class="info-label">Date of PTM</span>
+                <span>:</span>
+                <span class="line">08 August 2026</span>
+            </div>
+
+            <div></div>
+
+            <div class="info-row">
+                <span>👩‍🏫</span>
+                <span class="info-label">Class Teacher</span>
+                <span>:</span>
+                <span class="line"></span>
+            </div>
+
+        </div>
+
+
+        <!-- PERFORMANCE SCALE -->
+
+        <div class="scale">
+
+            <div class="scale-item green">
+                <div class="face">😊</div>
+                <div>
+                    <strong>EXCELLENT</strong>
+                    <small>Consistently Demonstrates</small>
+                </div>
+            </div>
+
+            <div class="scale-item blue">
+                <div class="face">😊</div>
+                <div>
+                    <strong>VERY GOOD</strong>
+                    <small>Usually Demonstrates</small>
+                </div>
+            </div>
+
+            <div class="scale-item yellow">
+                <div class="face">😐</div>
+                <div>
+                    <strong>DEVELOPING</strong>
+                    <small>Sometimes Demonstrates</small>
+                </div>
+            </div>
+
+            <div class="scale-item orange">
+                <div class="face">☹</div>
+                <div>
+                    <strong>NEEDS SUPPORT</strong>
+                    <small>Needs Gentle Support</small>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ASSESSMENT TABLES -->
+
+        <div class="assessments">
+
+            <!-- 1 -->
+            <div class="assessment">
+
+                <div class="assessment-title purple">
+                    <span>💬 1. COMMUNICATION & LANGUAGE</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Responds to own name</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Follows simple instructions</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Identifies familiar pictures</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Uses simple words</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Enjoys rhymes and songs</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 2 -->
+            <div class="assessment">
+
+                <div class="assessment-title green-bg">
+                    <span>🔢 2. EARLY NUMERACY</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Recognizes ‘One’</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Matches objects</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Big and Small</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Same and Different</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Recognizes colours</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 3 -->
+            <div class="assessment">
+
+                <div class="assessment-title blue-bg">
+                    <span>🏃 3. PHYSICAL DEVELOPMENT</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Walks independently</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Runs with balance</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Climbs with support</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Enjoys ball play</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Fine motor skills (fingers)</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Hand-eye coordination</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 4 -->
+            <div class="assessment">
+
+                <div class="assessment-title orange-bg">
+                    <span>✏️ 4. PRE-WRITING SKILLS</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Holds crayon correctly</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Scribbling control</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Finger tracing</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Colours within space</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Shows interest in drawing</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 5 -->
+            <div class="assessment">
+
+                <div class="assessment-title pink-bg">
+                    <span>👫 5. SOCIAL & EMOTIONAL DEVELOPMENT</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Greets teachers politely</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Shares toys and materials</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Waits for turn</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Plays with friends</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Participates in group activities</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 6 -->
+            <div class="assessment">
+
+                <div class="assessment-title teal-bg">
+                    <span>🎨 6. CREATIVE EXPRESSION</span>
+
+                    <div class="rating-dots">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="assessment-body">
+
+                    <div class="assessment-row">
+                        <span>Enjoys colouring</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Explores painting activities</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Enjoys music and rhymes</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Moves to music / dance</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                    <div class="assessment-row">
+                        <span>Uses imagination in play</span>
+                        <i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- OBSERVATION -->
+
+        <div class="observation">
+
+            <h3>⭐ TEACHER'S OBSERVATION</h3>
+
+            <div class="observation-grid">
+
+                <div class="observation-box">
+                    <h4>🌟 Strengths</h4>
+                    <div class="lines"></div>
+                </div>
+
+                <div class="observation-box">
+                    <h4>🌱 Areas to Encourage</h4>
+                    <div class="lines"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SIGNATURES -->
+
+    <div class="signatures">
+
+        <div class="signature">
+            <div class="signature-line"></div>
+            <small>👤 Class Teacher</small>
+        </div>
+
+        <div class="signature">
+            <div class="signature-line"></div>
+            <small>👤 Director</small>
+        </div>
+
+        <div class="signature">
+            <div class="signature-line"></div>
+            <small>👥 Parent / Guardian</small>
+        </div>
+
+        <div class="signature">
+            <div class="signature-line"></div>
+            <small>📅 Date</small>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+        ⭐ Thank you for your valuable support! ⭐
+    </footer>
+
+</div>
+
+</body>
+</html>
